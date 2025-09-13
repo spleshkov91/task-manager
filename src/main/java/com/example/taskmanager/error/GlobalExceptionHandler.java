@@ -31,4 +31,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.internalServerError()
                 .body(new ErrorResponse("INTERNAL_ERROR", ex.getMessage(), 500));
     }
+
+    @ExceptionHandler(com.example.taskmanager.common.NotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNotFound(com.example.taskmanager.common.NotFoundException ex) {
+        return ResponseEntity.status(404)
+                .body(new ErrorResponse("NOT_FOUND", ex.getMessage(), 404));
+    }
 }
